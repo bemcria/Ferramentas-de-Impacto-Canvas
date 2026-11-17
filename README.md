@@ -18,12 +18,23 @@ Funciona em computadores, tablets e celulares (Chrome, Edge, Firefox e Safari at
 Publique a pasta inteira, mantendo `index.html`, `css/`, `js/` e `assets/` juntos.
 
 ## Páginas (abas)
-As páginas vêm do PDF enviado e usam o **título de cada canva** como nome da aba e como título no cabeçalho:
+O nome de cada página vem do **nome do arquivo PDF de origem** (em Caixa Alta e Baixa, com a acentuação restaurada) e a ordem das abas segue a **numeração dos arquivos**. O Planejamento Editorial (arquivo 11, que traz 3 páginas) fica por último. As imagens já não têm título impresso na barra preta: o título aparece no cabeçalho e na aba.
 
-| Aba | Tipo |
-|---|---|
-| Tour de Experiência · Mix de Marketing · Mapeamento de Valores · Mapa de Construção de Parcerias · Definição do Problema · Modelo de Negócios (Canvas de Modelo de Negócios) · Análise SWOT · Planejamento Editorial | **Canvas** (com post-its) |
-| Infográfico · Fluxograma (Fluxograma de Produção de Publicações) | **Referência** (só visualização, com zoom) |
+| Nº | Aba | Tipo |
+|---|---|---|
+| 1 | Análise SWOT | Canvas (com post-its) |
+| 2 | Canvas do Modelo de Negócio | Canvas |
+| 3 | Tour da Experiência | Canvas |
+| 4 | Definição do Problema | Canvas |
+| 5 | Diagrama de Causas | Canvas |
+| 6 | Loop de Aprendizagem | Canvas |
+| 7 | Mapeamento de Valores | Canvas |
+| 8 | Mix de Marketing | Canvas |
+| 9 | Mapa de Parcerias | Canvas |
+| 10 | Planejamento de Evidências | Canvas |
+| 11 | Planejamento Editorial | Canvas |
+| 11 | Infográfico | Referência (só visualização, com zoom) |
+| 11 | Fluxograma (Fluxograma de Produção de Publicações) | Referência |
 
 Cada Canvas tem os **seus próprios post-its**. O endereço muda com a página (ex.: `index.html#analise-swot`), então dá para compartilhar o link direto de uma página; o navegador também lembra a última página aberta. Com muitas abas, a faixa rola na horizontal (botões ‹ › no computador, deslize no celular; no teclado: setas, Home e End).
 
@@ -44,11 +55,11 @@ Cada Canvas tem os **seus próprios post-its**. O endereço muda com a página (
 3. Rode `python3 tools/gerar-assets-offline.py`.
 
 ### Sobre `js/data/` (exportar ao abrir o arquivo direto do disco)
-Ao abrir o `index.html` por duplo clique (endereço `file://`), os navegadores bloqueiam a exportação de imagens que estão no disco. Por isso `js/data/*.js` guarda as mesmas imagens em base64, carregadas só na hora de exportar. Quando o projeto roda em um servidor (`http://` ou `https://`), esses arquivos não são usados e podem ser removidos para economizar espaço (~4,7 MB). **Se você trocar um PNG de `assets/`**, rode `python3 tools/gerar-assets-offline.py` para atualizar `js/data/`.
+Ao abrir o `index.html` por duplo clique (endereço `file://`), os navegadores bloqueiam a exportação de imagens que estão no disco. Por isso `js/data/*.js` guarda as mesmas imagens em base64, carregadas só na hora de exportar. Quando o projeto roda em um servidor (`http://` ou `https://`), esses arquivos não são usados e podem ser removidos para economizar espaço (~7,8 MB). **Se você trocar um PNG de `assets/`**, rode `python3 tools/gerar-assets-offline.py` para atualizar `js/data/`.
 
 ## Dados
 Os post-its ficam no `localStorage` (chave `canvasEditorial.v2`) deste navegador/endereço, separados por página: `{ "version": 2, "boards": { "analise-swot": [ ... ] } }`. Cada post-it guarda a posição (`x`, `y`, de 0 a 1 do espaço livre da página) e as dimensões (`w` = fração da largura da página, de 0,10 a 0,45; `h` = fração da altura, de 0,10 a 0,50).
-- **Versão anterior:** os post-its salvos pela versão de um único Canvas (chave `canvasEditorial.v1`) aparecem automaticamente na página **Planejamento Editorial**.
+- **Versões anteriores:** os post-its salvos pela versão de um único Canvas (chave `canvasEditorial.v1`) aparecem automaticamente na página **Planejamento Editorial**. Páginas que mudaram de nome (`modelo-de-negocios` → `canvas-do-modelo-de-negocio` e `tour-de-experiencia` → `tour-da-experiencia`) mantêm os post-its, os links e a última página salvos; a tabela `ALIASES` em `js/app.js` faz essa correspondência.
 - **Importar dados:** aceita o backup novo (todas as páginas) e o formato antigo (`{ "notes": [...] }`), que entra na página aberta. Backups sem `w` e `h` recebem o tamanho padrão.
 - Limpar os dados do site no navegador apaga os post-its.
 

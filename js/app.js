@@ -9,23 +9,31 @@ const COPYRIGHT = '© 2026 BemCria Criatividade e Estratégia';
 const COPYRIGHT_FULL = COPYRIGHT + '. Todos os direitos reservados.';
 const COLORS = [['Amarelo', '#fff176'], ['Verde', '#b9f6ca'], ['Azul', '#90caf9'], ['Rosa', '#f8bbd0'], ['Laranja', '#ffcc80'], ['Lilás', '#d1c4e9']];
 
-/* Páginas do projeto, na ordem das abas. A imagem de cada uma fica em assets/<key>.png.
+/* Páginas do projeto, na ordem das abas (a mesma numeração dos arquivos PDF de origem: 1 a 11).
+   O nome de cada página vem do nome do arquivo; o Planejamento Editorial (arquivo 11, com 3 páginas) fica por último.
+   A imagem de cada página fica em assets/<key>.png.
    kind 'canvas' = página com post-its · kind 'viewer' = página só de visualização (referências).
    Para incluir uma página: adicione o PNG em assets/, uma linha aqui e rode tools/gerar-assets-offline.py. */
 const PAGES = [
-  { key: 'tour-de-experiencia', kind: 'canvas', title: 'Tour de Experiência', alt: 'Canvas Tour de Experiência com campos de perguntas: Qual é o foco para esse tour?; Quais são as práticas observadas?; Quem está envolvido?; Que informações são usadas? O que está faltando?; Que produtos são utilizados?; Como é o ambiente?; O que funciona bem?; O que não funciona bem? O que pode ser melhorado?; e uma coluna de notas e observações adicionais com linhas para escrever.' },
-  { key: 'mix-de-marketing', kind: 'canvas', title: 'Mix de Marketing', alt: 'Canvas Mix de Marketing com sete campos, cada um com uma pergunta orientadora: Produto, Praça, Preço, Propósito, Processo, Pessoas e Promoção.' },
-  { key: 'mapeamento-de-valores', kind: 'canvas', title: 'Mapeamento de Valores', alt: 'Canvas Mapeamento de Valores com duas linhas, Valores individuais e Valores organizacionais, cada uma com quatro colunas: Sempre importante, Às vezes é importante, Raramente é importante e Nunca é importante.' },
-  { key: 'mapa-de-parcerias', kind: 'canvas', title: 'Mapa de Construção de Parcerias', alt: 'Mapa de Construção de Parcerias com doze etapas numeradas em duas linhas: Delimitando, Identificando, Construindo, Planejando, Gerenciando, Reunindo recursos, Implementando, Medindo, Revendo, Revisando, Institucionalizando e Mantendo ou finalizando.' },
+  { key: 'analise-swot', kind: 'canvas', title: 'Análise SWOT', alt: 'Análise SWOT em quatro quadrantes: Forças e Fraquezas, identificadas como fatores internos, e Oportunidades e Ameaças, identificadas como fatores externos, cada um com perguntas orientadoras.' },
+  { key: 'canvas-do-modelo-de-negocio', kind: 'canvas', title: 'Canvas do Modelo de Negócio', alt: 'Canvas do Modelo de Negócio com nove blocos: Quem irá te ajudar? (principais parceiros), Como você faz? (principais atividades), O que você faz? (proposta de valor), Como você interage? (relações com os stakeholders), Quem você ajuda? (segmentação de stakeholders), O que você precisa? (principais recursos), Como você obtém recursos? (canais de distribuição e fontes de receita), Quanto custará? (estrutura de custo) e Quanto você receberá? (fluxo de receita).' },
+  { key: 'tour-da-experiencia', kind: 'canvas', title: 'Tour da Experiência', alt: 'Canvas Tour da Experiência com campos de perguntas: Qual é o foco para esse tour?; Quais são as práticas observadas?; Quem está envolvido?; Que informações são usadas? O que está faltando?; Que produtos são utilizados?; Como é o ambiente?; O que funciona bem?; O que não funciona bem? O que pode ser melhorado?; e uma coluna de notas e observações adicionais com linhas para escrever.' },
   { key: 'definicao-do-problema', kind: 'canvas', title: 'Definição do Problema', alt: 'Canvas Definição do Problema com cinco colunas de perguntas: a questão principal e por que é importante; para quem isso é um problema; que fatores sociais e culturais moldam o problema; que evidências mostram que vale o investimento; e se é possível reformular o problema.' },
-  { key: 'modelo-de-negocios', kind: 'canvas', title: 'Canvas de Modelo de Negócios', tab: 'Modelo de Negócios', alt: 'Canvas de Modelo de Negócios com nove blocos: Principais parceiros, Principais atividades, Proposta de valor, Relações com os stakeholders, Segmentação de stakeholders, Principais recursos, Canais de distribuição e fontes de receita, Estrutura de custo e Fluxo de receita.' },
-  { key: 'analise-swot', kind: 'canvas', title: 'Análise SWOT', alt: 'Análise SWOT em quatro quadrantes: Forças e Fraquezas, que são fatores internos, e Oportunidades e Ameaças, que são fatores externos, cada um com perguntas orientadoras.' },
+  { key: 'diagrama-de-causas', kind: 'canvas', title: 'Diagrama de Causas', alt: 'Diagrama de Causas: um círculo grande, Problema central, à esquerda, ligado a duas sequências de três círculos: Sintomas diretos, Sintomas subjacentes e Fatores contribuintes, na parte de cima; e Causas diretas, Causas subjacentes e Fatores contribuintes, na parte de baixo.' },
+  { key: 'loop-de-aprendizagem', kind: 'canvas', title: 'Loop de Aprendizagem', alt: 'Loop de Aprendizagem: quatro quadros ligados por setas em ciclo: Colete histórias e insights; Priorize percepções e soluções; Acompanhe indicadores e progresso; e Reveja resultados e impacto.' },
+  { key: 'mapeamento-de-valores', kind: 'canvas', title: 'Mapeamento de Valores', alt: 'Canvas Mapeamento de Valores com duas linhas, Valores individuais e Valores organizacionais, cada uma com quatro colunas: Sempre importante, Às vezes é importante, Raramente é importante e Nunca é importante.' },
+  { key: 'mix-de-marketing', kind: 'canvas', title: 'Mix de Marketing', alt: 'Canvas Mix de Marketing com sete campos, cada um com uma pergunta orientadora: Produto, Praça, Preço, Propósito, Processo, Pessoas e Promoção.' },
+  { key: 'mapa-de-parcerias', kind: 'canvas', title: 'Mapa de Parcerias', alt: 'Mapa de Parcerias com doze etapas numeradas em duas linhas: Delimitando, Identificando, Construindo, Planejando, Gerenciando, Reunindo recursos, Implementando, Medindo, Revendo, Revisando, Institucionalizando e Mantendo ou finalizando.' },
+  { key: 'planejamento-de-evidencias', kind: 'canvas', title: 'Planejamento de Evidências', alt: 'Planejamento de Evidências com um losango central, Foco principal do seu projeto ou organização, cercado por quatro quadros: Melhorar (O que traz um novo valor?), Substituir (O que o torna menos desejável?), Reutilizar (No que se baseia?) e Limitar (Quais poderiam ser os efeitos negativos quando levados ao extremo?).' },
   { key: 'planejamento-editorial', kind: 'canvas', title: 'Planejamento Editorial', alt: 'Canvas Planejamento Editorial com quatro quadrantes: Quem / Público; O que e Porquê / Conceito Editorial; Quando e Quanto / Distribuição; Como / Mockup.' },
   { key: 'infografico', kind: 'viewer', title: 'Infográfico', alt: 'Exemplo de página dupla de revista com a identidade Conthabil, anotada com os elementos gráficos: cabeçalho, foto, legenda, título, linha fina, capitular, texto, janela-olho, subtítulo, vinheta, box, imagem vetorial, ilustração, gráfico, tabela, infográfico e assinatura.' },
   { key: 'fluxograma', kind: 'viewer', title: 'Fluxograma de Produção de Publicações', tab: 'Fluxograma', alt: 'Fluxograma de Produção de Publicações com 16 etapas: Planejamento Editorial, Reunião de Pauta, Projeto Gráfico, Cronograma, Definição do Espelho, Recebimento dos Anúncios, dos Textos e das Fotos, Diagramação, Revisão e Correções, Aprovações, Tratamento das Fotos, Fechamento de Arquivos, Produção Gráfica, Backup e Distribuição, seguidas da descrição de cada etapa.' }
 ];
 const PAGE = Object.fromEntries(PAGES.map(p => [p.key, { ...p, src: `assets/${p.key}.png`, tab: p.tab || p.title }]));
 const CANVAS_KEYS = PAGES.filter(p => p.kind === 'canvas').map(p => p.key);
+/* Chaves de versões anteriores → chave atual (mantém post-its, links e a última página salvos) */
+const ALIASES = { 'modelo-de-negocios': 'canvas-do-modelo-de-negocio', 'tour-de-experiencia': 'tour-da-experiencia' };
+const resolveKey = k => (PAGE[k] ? k : (ALIASES[k] && PAGE[ALIASES[k]] ? ALIASES[k] : null));
 
 /* Dimensões do post-it: w = fração da largura da página, h = fração da altura da página. */
 const LIM = { minW: 0.10, maxW: 0.45, minH: 0.10, maxH: 0.50 };
@@ -139,9 +147,10 @@ function validateNotes(list) {
 function parseImport(data) {
   if (data && typeof data === 'object' && data.boards && typeof data.boards === 'object' && !Array.isArray(data.boards)) {
     const out = {};
-    for (const k of CANVAS_KEYS) {
-      if (!(k in data.boards)) continue;
-      const r = validateNotes(data.boards[k]);
+    for (const [rawKey, list] of Object.entries(data.boards)) {
+      const k = resolveKey(rawKey);
+      if (!k || PAGE[k].kind !== 'canvas') continue; /* páginas desconhecidas são ignoradas */
+      const r = validateNotes(list);
       if (r.error) return { error: `${PAGE[k].title}: ${r.error}` };
       out[k] = r.notes;
     }
@@ -159,9 +168,10 @@ function load() {
     const raw = localStorage.getItem(KEY);
     if (raw) {
       const data = JSON.parse(raw);
-      for (const k of CANVAS_KEYS) {
-        if (!data.boards || !(k in data.boards)) continue;
-        const r = validateNotes(data.boards[k]);
+      for (const [rawKey, list] of Object.entries(data.boards || {})) {
+        const k = resolveKey(rawKey);
+        if (!k || PAGE[k].kind !== 'canvas') continue;
+        const r = validateNotes(list);
         if (r.error) throw new Error(r.error);
         boards[k] = r.notes;
       }
@@ -680,10 +690,10 @@ new ResizeObserver(updateTabsNav).observe(tabsEl);
 const scrollTabs = dir => tabsEl.scrollBy({ left: dir * tabsEl.clientWidth * 0.7, behavior: reduceMotion() ? 'auto' : 'smooth' });
 tabsPrev.addEventListener('click', () => scrollTabs(-1));
 tabsNext.addEventListener('click', () => scrollTabs(1));
-addEventListener('hashchange', () => { const k = location.hash.slice(1); if (PAGE[k] && k !== currentKey) selectPage(k); });
+addEventListener('hashchange', () => { const k = resolveKey(location.hash.slice(1)); if (k && k !== currentKey) selectPage(k); });
 
 load();
-let first = location.hash.slice(1);
-if (!PAGE[first]) { try { first = localStorage.getItem(PAGE_KEY); } catch (e) { first = null; } }
-selectPage(PAGE[first] ? first : PAGES[0].key, { init: true });
+let first = resolveKey(location.hash.slice(1));
+if (!first) { try { first = resolveKey(localStorage.getItem(PAGE_KEY)); } catch (e) { first = null; } }
+selectPage(first || PAGES[0].key, { init: true });
 syncHand(); updateTabsNav();
